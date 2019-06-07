@@ -1,5 +1,7 @@
 package ua.lms.controller;
 
+import ua.lms.view.IndexView;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "MainServlet",  urlPatterns = {"/"})
+@WebServlet(name = "MainServlet",  urlPatterns = {"/"}, loadOnStartup = 1)
 public class MainServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -16,9 +18,16 @@ public class MainServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
-        out.println("<html><head><title>MyServlet</title></head><body>");
-        out.write("<h1>Hello Servlet World!</h1>");
-        out.println("</body>");
-        out.println("</html>");
+        IndexView indexView = IndexView.getInstance();
+        out.println(indexView.getIndex());
+    }
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        // отримуємо посилання на об'єкт сингелтона
+        IndexView indexView = IndexView.getInstance();
+        // присвоємо змінній сингелтота шлях до папаки html проеку
+        indexView.setPath(getServletContext().getRealPath("/html/"));
     }
 }
