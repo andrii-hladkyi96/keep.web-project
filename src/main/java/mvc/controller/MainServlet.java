@@ -1,6 +1,6 @@
-package ua.lms.controller;
+package mvc.controller;
 
-import ua.lms.view.IndexView;
+import mvc.view.IndexView;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

@@ -1,4 +1,4 @@
-package ua.lms.view;
+package mvc.view;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -27,7 +27,8 @@ public class IndexView {
 
     public void setPath(String path) {
         this.path = path;
-        index = getPartialHtml("index");
+        //index = getPartialHtml("SignIn");
+        index = getPartialHtml("Index");
     }
 
     /**
