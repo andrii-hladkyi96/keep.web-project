@@ -10,9 +10,6 @@ import com.rometools.rome.io.XmlReader;
 
 
 public class FeedReader {
-    private static String reportURL = "http://report.if.ua/feed/";//news site report.if.ua
-    private static String canal24URL = "https://24tv.ua/rss/all.xml";//news site report.if.ua
-    private static String gkpressURL = "http://gk-press.if.ua/feed/";//news site gk-press.if.ua
 
 
 /*Вам потрібно переглянути всі URL-адреси на своєму веб-сайті, а потім знайти файл, який містить "rss".
@@ -24,16 +21,17 @@ public class FeedReader {
 Якщо ви хочете зробити це через браузер, натисніть CTRL + U, щоб переглянути джерело, потім CTRL + F, щоб відкрити вікно
 пошуку, а потім просто введіть rss . URL-адресу RSS-каналу повинен з'явитися негайно.
 */
-public static ArrayList <SyndEntry> getPapers() {
+
+public static ArrayList <SyndEntry> getNewsBlock(String url) {
     boolean ok = false;
-    ArrayList <SyndEntry> papers = new ArrayList<>();
+    ArrayList <SyndEntry> newsBlock = new ArrayList<>();
     try {
-        URL feedUrl = new URL(gkpressURL);
+        URL feedUrl = new URL(url);
 
         SyndFeedInput input = new SyndFeedInput();
         XmlReader xmlReader = new XmlReader(feedUrl);
         SyndFeed feed = input.build(xmlReader);
-        papers = (ArrayList<SyndEntry>) feed.getEntries();
+        newsBlock = (ArrayList<SyndEntry>) feed.getEntries();
         ok = true;
     }
     catch (Exception ex) {
@@ -48,6 +46,10 @@ public static ArrayList <SyndEntry> getPapers() {
         System.out.println("The first parameter must be the URL of the feed to read.");
         System.out.println();
     }
-    return papers;
+    return newsBlock;
     }
 }
+
+
+
+

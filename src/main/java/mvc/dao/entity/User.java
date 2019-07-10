@@ -7,18 +7,16 @@ public class User{
     private String email;
     private String password;
     private String firstname;
-    private String lastname;
     private String telegram;
 
     public User() {
     }
 
-    public User(long id, String email, String password, String firstname, String lastname, String telegram) {
+    public User(long id, String email, String password, String firstname, String telegram) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.firstname = firstname;
-        this.lastname = lastname;
         this.telegram = telegram;
     }
 
@@ -54,14 +52,6 @@ public class User{
         this.firstname = firstname;
     }
 
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
     public String getTelegram() {
         return telegram;
     }
@@ -77,7 +67,6 @@ public class User{
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
                 ", telegram='" + telegram + '\'' +
                 '}';
     }
@@ -91,12 +80,11 @@ public class User{
                 Objects.equals(email, user.email) &&
                 Objects.equals(password, user.password) &&
                 Objects.equals(firstname, user.firstname) &&
-                Objects.equals(lastname, user.lastname) &&
                 Objects.equals(telegram, user.telegram);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, email, password, firstname, lastname, telegram);
+        return Objects.hash(id, email, password, firstname, telegram);
     }
 }

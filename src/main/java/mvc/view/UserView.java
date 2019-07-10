@@ -6,8 +6,8 @@ public class UserView {
         String index = indexView.getIndex();
         String loginForm = indexView.getLoginForm();
         String singUpForm = indexView.getSignUpForm();
-        String page ;//= index.replaceAll("<!--#######-->", loginForm);
-        page = index.replaceAll("<!--#######-->", singUpForm);
+        String page = index.replaceAll("<!--#######-->", loginForm);
+        //page = index.replaceAll("<!--#######-->", singUpForm);
         return page;
     }
 }
