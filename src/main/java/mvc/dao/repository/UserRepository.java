@@ -15,7 +15,7 @@ public class UserRepository {
 
         DataSource dataSource = new DataSource();
 
-        String query = "SELECT id, email, password, first_name, last_name, telegram" +
+        String query = "SELECT id, email, password, firstname, lastname, telegram" +
                 " FROM users " +
                 " WHERE users.email='" + email + "' AND password='" + password + "'";
 
@@ -31,9 +31,9 @@ public class UserRepository {
                         resultSet.getLong("id"),
                         resultSet.getString("email"),
                         resultSet.getString("password"),
-                        resultSet.getString("name"),
-                        resultSet.getString("date_created"),
-                        resultSet.getString("date_last_entered")
+                        resultSet.getString("firstname"),
+                        resultSet.getString("lastname"),
+                        resultSet.getString("telegram")
                 );
 
                 return user;
@@ -44,5 +44,23 @@ public class UserRepository {
         }
 
         return null;
+    }
+
+
+    public void setUser(String email, String password, String firstname, String lastname, String telegram) {
+
+        DataSource dataSource = new DataSource();
+
+        String query = "INSERT INTO users (email, password,firstname, lastname, telegram) VALUES ( \'"+email+
+                "', '"+password+"','"+firstname+"','"+lastname+"','"+telegram+"') ;";
+
+        try (
+                // get connection with our database
+                Connection connection = dataSource.getConnection();
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(query)
+        ){}catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

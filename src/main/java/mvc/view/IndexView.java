@@ -11,6 +11,9 @@ public class IndexView {
 
     private String index;
     private String path;
+    private String loginForm;
+    private String signUpForm;
+
 
     private static IndexView ourInstance = new IndexView();
 
@@ -27,9 +30,17 @@ public class IndexView {
 
     public void setPath(String path) {
         this.path = path;
-        //index = getPartialHtml("SignIn");
-        index = getPartialHtml("Index");
+        this.index = getPartialHtml("Index");
+        this.loginForm = getPartialHtml("login-form");
+        this.signUpForm = getPartialHtml("SignUp");
+
     }
+
+    public String getLoginForm() {
+        return loginForm;
+    }
+
+    public String getSignUpForm(){ return signUpForm; }
 
     /**
      * Зчитує фай за адресою шляху, що є в змінній path + filename + .html
