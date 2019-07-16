@@ -4,20 +4,29 @@ import java.util.Objects;
 
 public class User{
     private long id;
-    private String email;
-    private String password;
+    private long chat_id;
     private String firstname;
-    private String telegram;
+    private String category;
+    private String feedURL;
+    private long interval;
+    private long numberOfNews;
 
-    public User() {
+    public User(long id,long chat_id, String firstname, String category, String feedURL, long interval, long numberOfNews) {
+        this.id = id;
+        this.chat_id =chat_id;
+        this.firstname = firstname;
+        this.category = category;
+        this.feedURL = feedURL;
+        this.interval = interval;
+        this.numberOfNews = numberOfNews;
     }
 
-    public User(long id, String email, String password, String firstname, String telegram) {
-        this.id = id;
-        this.email = email;
-        this.password = password;
-        this.firstname = firstname;
-        this.telegram = telegram;
+    public long getChat_id() {
+        return chat_id;
+    }
+
+    public void setChat_id(long chat_id) {
+        this.chat_id = chat_id;
     }
 
     public long getId() {
@@ -28,21 +37,6 @@ public class User{
         this.id = id;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public String getFirstname() {
         return firstname;
@@ -52,22 +46,52 @@ public class User{
         this.firstname = firstname;
     }
 
-    public String getTelegram() {
-        return telegram;
+    public String getCategory() {
+        return category;
     }
 
-    public void setTelegram(String telegram) {
-        this.telegram = telegram;
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getFeedURL() {
+        return feedURL;
+    }
+
+    public void setFeedURL(String feedURL) {
+        this.feedURL = feedURL;
+    }
+
+    public long getInterval() {
+        return interval;
+    }
+
+    public void setInterval(long interval) {
+        this.interval = interval;
+    }
+
+    public long getNumberOfNews() {
+        return numberOfNews;
+    }
+
+    public void setNumberOfNews(long numberOfNews) {
+        this.numberOfNews = numberOfNews;
+    }
+
+    public void setNumberOfNews(int numberOfNews) {
+        this.numberOfNews = numberOfNews;
     }
 
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
+                ", chat_id=" + chat_id +
                 ", firstname='" + firstname + '\'' +
-                ", telegram='" + telegram + '\'' +
+                ", category='" + category + '\'' +
+                ", feedURL='" + feedURL + '\'' +
+                ", interval=" + interval +
+                ", numberOfNews=" + numberOfNews +
                 '}';
     }
 
@@ -77,14 +101,16 @@ public class User{
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
         return id == user.id &&
-                Objects.equals(email, user.email) &&
-                Objects.equals(password, user.password) &&
+                chat_id == user.chat_id &&
+                interval == user.interval &&
+                numberOfNews == user.numberOfNews &&
                 Objects.equals(firstname, user.firstname) &&
-                Objects.equals(telegram, user.telegram);
+                Objects.equals(category, user.category) &&
+                Objects.equals(feedURL, user.feedURL);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, email, password, firstname, telegram);
+        return Objects.hash(id, chat_id, firstname, category, feedURL, interval, numberOfNews);
     }
 }

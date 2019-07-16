@@ -24,12 +24,13 @@ public class MainServlet extends HttpServlet {
         HttpSession session = request.getSession();
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        int chat_id = Integer.parseInt(password);
 
         if (email != null) {
             UserRepository userRepository = new UserRepository();
-            User user = userRepository.getUserByEmailByPassword(email, password);
+            User user = userRepository.getUserByID(chat_id);
             if (user != null) {
-                session.setAttribute("email",email);
+               session.setAttribute("email",email);
             }
         }
         response.sendRedirect("/keep_web_project_war_exploded");
@@ -41,12 +42,12 @@ public class MainServlet extends HttpServlet {
         HttpSession session = request.getSession();
         IndexView indexView = IndexView.getInstance();
 
-        if (session.getAttribute("email") != null) {
-            out.println("Welcome " + session.getAttribute("email"));
-        } else {
-                UserView userView = new UserView();
-                out.println(userView.getLoginPage());
-        }
+       if (session.getAttribute("email") != null) {
+                out.println("Welcome " + session.getAttribute("email"));
+      } else {
+               UserView userView = new UserView();
+              out.println(userView.getLoginPage());
+      }
 
     }
 
